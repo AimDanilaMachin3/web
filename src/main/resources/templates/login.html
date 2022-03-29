@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Login</title>
+    <link th:rel="stylesheet" th:href="@{/styles/css/login.css}"/>
+</head>
+
+<body>
+<div class="flex-container">
+    <div class="flex-item">
+    </div>
+
+    <div class="flex-lol">
+        <form class="formContent" method="POST" th:action="@{/login}">
+            <h2 class="contentHeadingInfo contentHeadingReg">Log in</h2>
+            <div class="form-group">
+                <input name="username" type="text" class="input" placeholder="Username"
+                       autofocus="true"/>
+                <input name="password" type="password" class="input" placeholder="Password"/>
+                <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+                <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+                <button class="button" type="submit">Log In</button>
+            </div>
+        </form>
+
+        <h4 class="text-center"><a href="/registration">Create an account</a></h4>
+    </div>
+</div>
+</body>
+</html>
