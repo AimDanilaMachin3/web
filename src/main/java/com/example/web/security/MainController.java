@@ -54,7 +54,7 @@ public class MainController {
             AuthenticationException ex = (AuthenticationException) session
                     .getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
             if (ex != null) {
-                errorMessage = ex.getMessage();
+                errorMessage = "Ошибка в логине/пароле";
             }
         }
         model.addAttribute("errorMessage", errorMessage);

@@ -19,15 +19,15 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
         if(userService.userByName(user.getUsername())!=null){
-            errors.rejectValue("username","validation","такой логин уже есть");
+            errors.rejectValue("username","validation","Пользователь с таким именем уже существует!");
         }
 
         if(user.getPassword().length() < 5){
-            errors.rejectValue("username","validation","слишком короткий пароль");
+            errors.rejectValue("username","validation","Введите пароль не меньше 5 символов!");
         }
 
         if(!user.getPassword().equals(user.getConfirmPassword())){
-            errors.rejectValue("username","validation","пароли не совпадают");
+            errors.rejectValue("username","validation","Пароли не совпадают!");
         }
     }
 }
