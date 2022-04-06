@@ -1,0 +1,59 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Catalog cars</title>
+    <link th:rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+<div class="mainHeader onCard">
+    <div class="content">
+        <div class="subContent">
+            <a href="account.xhtml" class="item">
+                <img
+                        th:src="@{/img/sign-in-alt-solid.svg}"
+                        alt="loginIcon"
+                        class="itemIcon"
+                />
+                <p class="subIcon">Аккаунт</p>
+            </a>
+        </div>
+
+        <a href="content.xhtml" class="logo">
+            <img class="logoImg" th:src="@{/img/Cars_Logo_Black.svg.png}" alt=""/>
+        </a>
+        <div style="cursor: auto">
+            <a href="addCar.xhtml" class="item">
+                <img th:src="@{/img/plus-solid.svg}"
+                     alt="loginIcon"
+                     class="itemIcon"/>
+                <p class="subIcon margin-top-10">Добавить автомобиль</p>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="findPanel">
+    <div class="findInput">
+        <form>
+            <input class="input findCar" type="text">
+            <button class="button buttonFind">Найти</button>
+        </form>
+    </div>
+</div>
+
+<div class="carsContent">
+    <div class="itemCard" th:each="car : ${carList}">
+        <a th:href="@{/car/{id}(id=${car.id})}" class="itemCar">
+            <img th:src="${car.imageLink}" alt="car" class="itemCar"/>
+            <h3 class="itemTitle" th:text="${car.model}"></h3>
+            <br/>
+            <h3 class="itemTitle" th:text="'Цена: '+${car.price}"></h3>
+        </a>
+    </div>
+</div>
+</body>
+</html>

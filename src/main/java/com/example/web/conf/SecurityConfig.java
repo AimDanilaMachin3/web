@@ -25,12 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/images/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/registration/**").permitAll()
-                .antMatchers("/catalog*").hasRole("ROLE_USER")
+                .antMatchers("/catalog/**").permitAll()
                 .antMatchers("/profile/**").authenticated()
-                .antMatchers("/movie/**").authenticated()
                 .antMatchers("/error/**").permitAll()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/home").failureUrl("/login-error")
+                .formLogin().loginPage("/login").defaultSuccessUrl("/catalog").failureUrl("/login-error")
                 .and().logout().logoutUrl("/exit").logoutSuccessUrl("/login")
                 .and().exceptionHandling().accessDeniedPage("/error");
     }
