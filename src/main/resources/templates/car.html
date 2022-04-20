@@ -1,0 +1,89 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Catalog cars</title>
+    <link th:rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+<div class="mainHeader onCard">
+    <div class="content">
+        <div class="subContent">
+            <a href="account.xhtml" class="item">
+                <img
+                        th:src="@{/img/sign-in-alt-solid.svg}"
+                        alt="loginIcon"
+                        class="itemIcon"
+                />
+                <p class="subIcon">Аккаунт</p>
+            </a>
+        </div>
+
+        <a href="content.xhtml" class="logo">
+            <img class="logoImg" th:src="@{/img/Cars_Logo_Black.svg.png}" alt=""/>
+        </a>
+        <div  sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/addCar}" class="item">
+                <img th:src="@{/img/plus-solid.svg}"
+                     alt="loginIcon"
+                     class="itemIcon"/>
+                <p class="subIcon margin-top-10">Добавить автомобиль</p>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="card" >
+    <form sec:authorize="hasRole('ADMIN')" th:action="@{'/car/' + ${car.getId()}+ '/delete'}">
+        <button class="button" type="submit">Удалить</button>
+    </form>
+
+    <div class="card-img-wrapper">
+        <img class="card-img" th:src="${car.imageLink}"  alt="carImg"/>
+    </div>
+
+    <div class="card-content-wrapper">
+
+
+        <div class="card-title">
+            <h th:text="${car.model}"> </h>
+        </div>
+
+        <div class="card-details-wrapper">
+            <div class="card-label">Цена </div>
+            <div class="card-price"> <h th:text="${car.price}"></h></div>
+        </div>
+
+        <div class="card-details">
+            <div class="card-label">Цвета</div>
+
+            <div class="card-colors-wrapper">
+                <div class="card-color card-color-blue card-color-active"></div>
+                <div class="card-color card-color-red"></div>
+                <div class="card-color card-color-gray"></div>
+            </div>
+
+            <div class="card-text">
+                <p th:text="${car.description}"></p>
+            </div>
+
+            <div class="card-buttons-wrapper">
+                <a href="https://www.datsun.ru/dealer-finder.html" target="_blank">
+
+                    <button value="Найти дилера" styleClass="buttom-primary"/>
+                </a>
+
+                <a
+                        href="https://www-europe.datsun-cdn.net/content/dam/Datsun/RU/vehicles/common/price/2019/on-DO_price.pdf"
+                        target="_blank"
+                >
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

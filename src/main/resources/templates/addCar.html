@@ -36,24 +36,20 @@
     </div>
 </div>
 
-<div class="findPanel">
-    <div class="findInput">
-        <form>
-            <input class="input findCar" type="text">
-            <button class="button buttonFind">Найти</button>
-        </form>
-    </div>
-</div>
+<div class="formgroup">
+    <form method="POST" th:action="@{/addCar}" th:object="${newCar}">
+        <h4>Модель авто</h4>
+        <input type="text" th:field="*{model}" class="input" placeholder="Модель">
+        <h4>Цена</h4>
+        <input type="text" th:field="*{price}" class="input" placeholder="password">
 
-<div class="carsContent">
-    <div class="itemCard" th:each="car : ${carList}">
-        <a th:href="@{/car/{id}(id=${car.id})}" class="itemCar">
-            <img th:src="${car.imageLink}" alt="car" class="itemCar"/>
-            <h3 class="itemTitle" th:text="${car.model}"></h3>
-            <br/>
-            <h3 class="itemTitle" th:text="'Цена: '+${car.price}"></h3>
-        </a>
-    </div>
+        <h4>Описание</h4>
+        <input type="text" th:field="*{description}" class="input" placeholder="password">
+
+        <h4>Ссылка на фото авто</h4>
+        <input type="text" th:field="*{imageLink}" class="input" placeholder="password">
+        <button class="button" type="submit">Сохранить</button>
+    </form>
 </div>
 </body>
 </html>

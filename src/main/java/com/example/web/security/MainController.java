@@ -14,10 +14,7 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +74,30 @@ public class MainController {
         Page<Car> carList = carService.getAllCars(pageable);
         model.addAttribute("carList", carList);
         return "catalog";
+    }
+
+    @GetMapping("/car/{id}")
+    public String catalog(@PathVariable Long id, Model model) {
+        model.addAttribute("car", carService.findByCarById(id));
+        return "car";
+    }
+
+    @GetMapping("/addCar")
+    public String addCar(Model model) {
+        model.addAttribute("newCar",new Car());
+        return "addCar";
+    }
+
+    @PostMapping("/addCar")
+    public String addCar(@ModelAttribute("newCar") Car car) {
+        carService.saveCar(car);
+        return "redirect:/catalog";
+    }
+
+    @GetMapping("/car/{id}/delete")
+    public String deleteCar(@PathVariable Long id) {
+        carService.deleteCarById(id);
+        return "redirect:/catalog";
     }
 
 }

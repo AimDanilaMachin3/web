@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration/**").permitAll()
                 .antMatchers("/catalog/**").permitAll()
                 .antMatchers("/profile/**").authenticated()
+                .antMatchers("/car/**").permitAll()
                 .antMatchers("/error/**").permitAll()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/catalog").failureUrl("/login-error")
