@@ -11,7 +11,7 @@
 <div class="mainHeader onCard">
     <div class="content">
         <div class="subContent">
-            <a href="account.xhtml" class="item">
+            <a th:href="@{/profile}" class="item">
                 <img
                         th:src="@{/img/sign-in-alt-solid.svg}"
                         alt="loginIcon"
@@ -21,7 +21,7 @@
             </a>
         </div>
 
-        <a href="content.xhtml" class="logo">
+        <a th:href="@{/catalog}" class="logo">
             <img class="logoImg" th:src="@{/img/Cars_Logo_Black.svg.png}" alt=""/>
         </a>
         <div  sec:authorize="hasRole('ADMIN')">
@@ -39,15 +39,15 @@
 <div class="formgroup">
     <form method="POST" th:action="@{/addCar}" th:object="${newCar}">
         <h4>Модель авто</h4>
-        <input type="text" th:field="*{model}" class="input" placeholder="Модель">
+        <input type="text" th:field="*{model}" class="input" placeholder="Введите модель авто">
         <h4>Цена</h4>
-        <input type="text" th:field="*{price}" class="input" placeholder="password">
+        <input type="text" th:field="*{price}" class="input" placeholder="Введите цену">
 
         <h4>Описание</h4>
-        <input type="text" th:field="*{description}" class="input" placeholder="password">
+        <input type="text" th:field="*{description}" class="input" placeholder="Введите описание для авто">
 
         <h4>Ссылка на фото авто</h4>
-        <input type="text" th:field="*{imageLink}" class="input" placeholder="password">
+        <input type="text" th:field="*{imageLink}" class="input" placeholder="Ссылка на картинку">
         <button class="button" type="submit">Сохранить</button>
     </form>
 </div>

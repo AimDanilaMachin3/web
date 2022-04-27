@@ -1,9 +1,10 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Catalog cars</title>
+    <title>Результаты поиска</title>
     <link th:rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 
@@ -24,31 +25,16 @@
         <a th:href="@{/catalog}" class="logo">
             <img class="logoImg" th:src="@{/img/Cars_Logo_Black.svg.png}" alt=""/>
         </a>
-        <div  sec:authorize="hasRole('ADMIN')">
-            <a th:href="@{/addCar}" class="item">
-                <img th:src="@{/img/plus-solid.svg}"
-                     alt="loginIcon"
-                     class="itemIcon"/>
-                <p class="subIcon margin-top-10">Добавить автомобиль</p>
-            </a>
-        </div>
+        <div></div>
 
     </div>
 </div>
 
-<div class="findPanel">
-    <div class="findInput">
-        <form method="POST" th:action="@{/catalog/search}">
-
-            <!--/*@thymesVar id="query" type="java.lang.String"*/-->
-            <input  th:value="${query}" name="query"  class="input findCar" type="text">
-            <button class="button buttonFind">Найти</button>
-        </form>
-    </div>
-</div>
-
+<form th:action="@{/catalog}" style="float: left";>
+    <button class="button" type="submit">Вернуться на главную</button>
+</form>
 <div class="carsContent">
-    <div class="itemCard" th:each="car : ${carList}">
+    <div class="itemCard" th:each="car : ${cars}">
         <a th:href="@{/car/{id}(id=${car.id})}" class="itemCar">
             <img th:src="${car.imageLink}" alt="car" class="itemCar"/>
             <h3 class="itemTitle" th:text="${car.model}"></h3>
@@ -57,5 +43,6 @@
         </a>
     </div>
 </div>
+
 </body>
 </html>

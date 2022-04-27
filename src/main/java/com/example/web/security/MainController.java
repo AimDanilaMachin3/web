@@ -14,11 +14,14 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -98,6 +101,44 @@ public class MainController {
     public String deleteCar(@PathVariable Long id) {
         carService.deleteCarById(id);
         return "redirect:/catalog";
+    }
+
+    @GetMapping("/profile")
+    public String profilePage(Model model, Principal principal) {
+        User user = userService.userByName(principal.getName());
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
+    @RequestMapping("/exit")
+    public String logout() {
+        return "exitPanel";
+    }
+    @GetMapping("/profile/edit")
+    public String editProfilePage(Model model, Principal principal) {
+        User user = userService.userByName(principal.getName());
+        model.addAttribute("user", user);
+        return "editProfile";
+    }
+
+    @PostMapping("/profile/edit")
+    public String editProfilePage(@ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (!user.getConfirmPassword().equals(user.getPassword())) {
+            bindingResult.addError(
+                    new FieldError("user", "confirmPassword", "Passwords don't matches. Enter password again!"));
+            return "editProfile";
+        } else {
+            userService.updatePassword(user);
+            return "profile";
+        }
+    }
+
+    @RequestMapping("/catalog/search")
+    public String findBuQuery(@RequestParam("query") String query, @PageableDefault(value = 5) Pageable pageable, Model model) {
+        query = query.toLowerCase();
+        List<Car> cars = carService.findAllByModel(query);
+        model.addAttribute("cars", cars);
+        return "result";
     }
 
 }

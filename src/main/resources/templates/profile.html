@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Profile</title>
+    <link th:rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+<div class="mainHeader onCard">
+    <div class="content">
+        <div class="subContent">
+            <a th:href="@{/profile}" class="item">
+                <img
+                        th:src="@{/img/sign-in-alt-solid.svg}"
+                        alt="loginIcon"
+                        class="itemIcon"
+                />
+                <p class="subIcon">Аккаунт</p>
+            </a>
+        </div>
+
+        <a th:href="@{/catalog}" class="logo">
+            <img class="logoImg" th:src="@{/img/Cars_Logo_Black.svg.png}" alt=""/>
+        </a>
+        <div></div>
+
+    </div>
+</div>
+
+<div class="formgroup">
+    <form>
+        <h4>Ваш логин</h4>
+        <div class="input" style="line-height: 2.25em;">
+           <h3 th:text="${user.username}"></h3>
+        </div>
+        <a th:href="@{profile/edit}">Сменить пароль</a>
+        <a th:href="@{/exit}">Выйти</a>
+    </form>
+</div>
+</body>
+</html>
+</html>

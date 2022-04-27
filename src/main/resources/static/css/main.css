@@ -69,7 +69,6 @@ a {
 }
 
 .formgroup {
-    height: 100%;
     width: 400px;
 
     margin: 200px auto;
@@ -379,3 +378,8 @@ a {
     line-height: 100%;
 }
 
+.controlItems {
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+}

@@ -17,17 +17,25 @@ public class CarService {
 
     private final CarRepository carRepository;
 
-    public Page<Car> getAllCars(Pageable pageable){
-     return carRepository.findAll(pageable);
+    public Page<Car> getAllCars(Pageable pageable) {
+        return carRepository.findAll(pageable);
     }
 
     public void saveCar(Car car) {
         carRepository.save(car);
     }
+
+    public List<Car> findAllByModel(String model) {
+      return  carRepository.findAllByModel(model);
+    }
+
+
+
     public void deleteCarById(Long id) {
         carRepository.deleteById(id);
     }
-    public Car findByCarById(Long id){
+
+    public Car findByCarById(Long id) {
         return carRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 }

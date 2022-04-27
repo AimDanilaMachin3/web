@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Обновление пароля аккаунта</title>
+</head>
+
+<body>
+<form method="POST" class="form-signin" th:object="${user}" th:action="@{/profile/edit}">
+    <h2 class="form-signin-heading">Обновление пароля аккаунта</h2>
+    <div class="form-group">
+        <input type="hidden" th:field="*{id}" th:value="*{id}" class="input" placeholder="username"
+               autofocus="true" >
+        <span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">fds</span>
+    </div>
+    <div class="form-group">
+        <input type="hidden" th:field="*{username}" th:value="*{username}" class="input" placeholder="username"
+               autofocus="true">
+        <span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">fds</span>
+    </div>
+    <div class="form-group">
+        <input type="hidden" th:field="*{roles}" th:value="*{roles}" class="input" placeholder="email">
+    </div>
+    <div class="form-group">
+        <input type="password" th:field="*{confirmPassword}" class="input" placeholder="password">
+        <span class="has-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">fds</span>
+    </div>
+    <div class="form-group">
+        <input type="password" th:field="*{password}" class="input" placeholder="password">
+        <span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">fds</span>
+    </div>
+    <button class="button" type="submit">Сменить пароль</button>
+</form>
+</body>
+</html>
+</html>
